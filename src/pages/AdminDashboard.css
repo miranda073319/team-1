@@ -1,0 +1,302 @@
+/* =========================================
+   1. CONTENEDORES Y ESTRUCTURA GENERAL
+   Alineación principal del panel y el fondo
+   de las tarjetas principales.
+   ========================================= */
+.admin-container {
+  padding: 2rem 5%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.admin-header {
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #333;
+  padding-bottom: 1rem;
+}
+
+.admin-header h1 {
+  color: #ffb700;
+  margin: 0 0 0.5rem 0;
+}
+
+.admin-header p {
+  color: var(--text-secondary);
+  margin: 0 0 1.5rem 0;
+}
+
+.admin-card {
+  background-color: var(--card-bg);
+  padding: 2rem;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.admin-card h2 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+
+/* =========================================
+   2. PESTAÑAS DE NAVEGACIÓN (TABS)
+   Estilos de los botones para alternar entre
+   Inventario, Formulario y Pedidos.
+   ========================================= */
+.admin-tabs {
+  display: flex;
+  gap: 1rem;
+}
+
+.admin-tabs .tab-btn {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid #333;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1rem;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.admin-tabs .tab-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+}
+
+.admin-tabs .tab-btn.active {
+  background: #ffb700;
+  color: #121212;
+  border-color: #ffb700;
+  font-weight: bold;
+}
+
+/* =========================================
+   3. TABLAS DE DATOS (Inventario y Pedidos)
+   Estructura general, cabeceras y celdas.
+   ========================================= */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto; 
+  background-color: #1a1a1a;
+  border-radius: 8px;
+  border: 1px solid #333;
+}
+
+.inventory-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  color: #eee;
+}
+
+.inventory-table th,
+.inventory-table td {
+  padding: 16px 20px;
+  border-bottom: 1px solid #333;
+  vertical-align: middle;
+}
+
+.inventory-table th {
+  background-color: #121212;
+  color: #888;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.inventory-table tr:last-child td {
+  border-bottom: none;
+}
+
+.inventory-table tbody tr:hover {
+  background-color: #222; /* Resalta levemente la fila al pasar el mouse */
+}
+
+/* =========================================
+   4. ETIQUETAS, PRECIOS Y STOCK (BADGES)
+   ========================================= */
+.game-name-cell {
+  gap: 10px;
+  font-weight: bold;
+}
+
+.discount-tag {
+  background-color: var(--accent);
+  color: white;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+.final-price {
+  font-weight: bold;
+  color: #00ff64;
+}
+
+.stock-tag {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+.stock-tag.in-stock {
+  background-color: rgba(0, 255, 100, 0.1);
+  color: #00ff64; /* Verde para disponible */
+}
+
+.stock-tag.out-stock {
+  background-color: rgba(255, 0, 0, 0.1);
+  color: #ff4d4d; /* Rojo para agotado */
+}
+
+/* =========================================
+   5. BOTONES DE ACCIÓN EN TABLA
+   Botones de editar y eliminar
+   ========================================= */
+.actions-cell {
+  text-align: right; 
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.actions-cell .action-btn {
+  margin-left: 10px; 
+}
+
+.action-btn {
+  background: transparent;
+  border: 1px solid #444;
+  color: #aaa;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  font-size: 1.1rem;
+}
+
+.action-btn.edit:hover {
+  background-color: rgba(255, 183, 0, 0.1);
+  color: #ffb700;
+  border-color: #ffb700;
+}
+
+.action-btn.delete:hover {
+  background-color: rgba(255, 68, 68, 0.1);
+  color: #ff4d4d;
+  border-color: #ff4d4d;
+}
+
+/* =========================================
+   6. FORMULARIO DE ALTA Y EDICIÓN
+   Disposición en cuadrícula y estilos de
+   inputs, textareas y selects.
+   ========================================= */
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.input-group label {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.admin-form input,
+.admin-form textarea,
+.admin-form select {
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #333;
+  background-color: #2a2a2a;
+  color: white;
+  font-size: 1rem;
+  font-family: inherit;
+  outline: none;
+}
+
+.admin-form textarea:focus,
+.admin-form input:focus,
+.admin-form select:focus {
+  border-color: var(--accent);
+}
+
+/* =========================================
+   7. BOTONES DE ENVÍO Y MENSAJES DE ALERTA
+   ========================================= */
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.admin-submit-btn {
+  background-color: #ffb700;
+  color: #121212;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  flex: 2; 
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.admin-submit-btn:hover { background-color: #ffd700; }
+
+.admin-cancel-btn {
+  background-color: transparent;
+  border: 1px solid #555;
+  color: white;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  flex: 1;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.admin-cancel-btn:hover { background-color: #333; }
+
+/* Banners de notificación superior */
+.admin-msg {
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.admin-msg.success { 
+  background-color: rgba(0, 255, 100, 0.1); 
+  color: #00ff64; 
+  border: 1px solid #00ff64; 
+}
+
+.admin-msg.error { 
+  background-color: rgba(255, 0, 0, 0.1); 
+  color: #ff4d4d; 
+  border: 1px solid #ff4d4d; 
+}

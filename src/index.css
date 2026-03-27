@@ -1,0 +1,55 @@
+/* =========================================
+   1. VARIABLES GLOBALES DE DISEÑO
+   Paleta de colores oficial de SteveGames,
+   tema oscuro por defecto
+   ========================================= */
+:root {
+  --bg-dark: #121212;
+  --card-bg: #1e1e1e;
+  --accent: #0078f2; 
+  --text-main: #ffffff;
+  --text-secondary: #b3b3b3;
+  --radius: 12px;
+}
+
+/* =========================================
+   2. CONFIGURACIÓN DEL CUERPO (BODY)
+   Reset de márgenes, aplicación del color de 
+   fondo y fuente principal.
+   ========================================= */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  overflow-x: hidden; 
+}
+
+/* =========================================
+   3. RESETS Y ESTILOS 
+   ========================================= */
+* {
+  box-sizing: border-box; 
+  transition: all 0.2s ease-in-out;
+}
+
+a {
+  text-decoration: none; /* Quita el subrayado de los links */
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+/* =========================================
+   4. ANIMACIONES COMPARTIDAS
+   ========================================= */
+.game-card:hover {
+  transform: translateY(-5px); 
+  filter: brightness(1.1);     
+}

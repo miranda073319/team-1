@@ -1,0 +1,289 @@
+/* =========================================
+   1. CONTENEDOR PRINCIPAL Y CABECERA
+   Estilos base del perfil, el banner oscuro
+   y el círculo del Avatar del usuario.
+   ========================================= */
+.profile-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  color: white;
+  min-height: calc(100vh - 80px);
+}
+
+.profile-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  background-color: #1a1a1a;
+  padding: 3rem 2rem 0;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+.profile-avatar {
+  width: 80px;
+  height: 80px;
+  background-color: #ffb700;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 1rem;
+  box-shadow: 0 4px 15px rgba(255, 183, 0, 0.4);
+}
+
+.avatar-icon {
+  font-size: 2.5rem;
+  color: #1a1a1a;
+}
+
+.profile-header h1 {
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.profile-header p {
+  color: #aaaaaa;
+  margin-bottom: 2rem;
+}
+
+/* =========================================
+   2. PESTAÑAS DE NAVEGACIÓN (TABS)
+   ========================================= */
+.profile-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  background-color: #121212;
+  padding: 1rem;
+  border-radius: 8px 8px 0 0;
+}
+
+.tab-btn {
+  background: transparent;
+  border: none;
+  color: #888;
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 0.8rem 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.tab-btn:hover {
+  color: white;
+}
+
+.tab-btn.active {
+  color: #ffb700;
+  border-bottom: 3px solid #ffb700;
+}
+
+/* =========================================
+   3. TARJETAS DE CONTENIDO Y DATOS PERSONALES
+   ========================================= */
+.profile-card {
+  background-color: #1a1a1a;
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+.profile-card h2 {
+  margin-top: 0;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #333;
+  padding-bottom: 1rem;
+}
+
+.data-card {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.data-group {
+  margin-bottom: 1.5rem;
+}
+
+.data-group label {
+  color: #888;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.data-group p {
+  font-size: 1.2rem;
+  margin: 0.5rem 0 0;
+  color: white;
+  font-weight: bold;
+}
+
+.role-badge {
+  display: inline-block;
+  background-color: rgba(0, 123, 255, 0.2);
+  color: #007bff !important;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.95rem !important;
+}
+
+/* =========================================
+   4. LISTA DE DESEOS Y ESTADOS VACÍOS
+   ========================================= */
+.wishlist-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #888;
+}
+
+.empty-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+/* =========================================
+   5. HISTORIAL DE COMPRAS (ACORDEÓN)
+   Estilos de los tickets y la lista de juegos
+   comprados que se despliega.
+   ========================================= */
+.orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.order-item-card {
+  background-color: #121212;
+  border: 1px solid #333;
+  border-radius: 10px;
+  padding: 1.5rem;
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #2a2a2a;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
+.order-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.order-id {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #ffb700;
+}
+
+.order-date {
+  color: #888;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.order-status {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
+}
+
+.status-badge {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.status-badge.success {
+  background-color: rgba(0, 255, 100, 0.1);
+  color: #00ff64;
+  border: 1px solid #00ff64;
+}
+
+.order-total {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: white;
+}
+
+/* Lista interna de juegos por pedido */
+.order-products {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mini-product-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background-color: #1a1a1a;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.mini-product-img {
+  width: 50px;
+  height: 65px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.mini-product-details {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.mini-product-name {
+  font-weight: bold;
+  color: #ddd;
+}
+
+.mini-product-qty {
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.mini-product-price {
+  font-weight: bold;
+  color: #aaa;
+}
+
+/* =========================================
+   6. RESPONSIVO (MÓVILES)
+   ========================================= */
+@media (max-width: 768px) {
+  .profile-tabs {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .tab-btn {
+    justify-content: center;
+  }
+}
+

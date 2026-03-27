@@ -1,0 +1,140 @@
+/* =========================================
+   1. ESTRUCTURA PRINCIPAL DE LA BARRA
+   Usa Flexbox para separar Izquierda, Centro 
+   y Derecha. 'position: sticky' hace que la 
+   barra persiga al usuario al hacer scroll.
+   ========================================= */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 5%;
+  background-color: var(--bg-dark);
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* Asegura que la barra siempre esté por encima de otros elementos */
+  border-bottom: 1px solid #333;
+}
+
+/* =========================================
+   2. LOGOTIPO
+   ========================================= */
+.logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+  text-decoration: none;
+  color: white;
+}
+
+.logo span {
+  color: var(--accent); 
+}
+
+/* =========================================
+   3. BARRA DE BÚSQUEDA
+   Estilo de pastilla, fondo oscuro
+   y se quitan los bordes nativos del input.
+   ========================================= */
+.search-container {
+  background: #2a2a2a;
+  display: flex;
+  align-items: center;
+  padding: 0.6rem 1.2rem;
+  border-radius: 25px;
+  width: 400px;
+}
+
+.search-icon {
+  color: var(--text-secondary);
+  margin-right: 10px;
+}
+
+.search-container input {
+  background: transparent;
+  border: none;
+  color: white;
+  width: 100%;
+  outline: none; 
+}
+
+/* =========================================
+   4. SECCIÓN DERECHA Y CARRITO
+   Contiene los botones de acciones del usuario.
+   ========================================= */
+.nav-right {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.login-btn {
+  background: var(--accent);
+  padding: 0.6rem 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: var(--radius);
+  color: #121212;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.cart-btn {
+  font-size: 1.3rem;
+  position: relative;
+  color: white;
+}
+
+.badge {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background: red;
+  color: white;
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 50%; 
+}
+
+/* =========================================
+   5. BOTONES DE USUARIO AUTENTICADO
+   Estilos para el botón de salir, enlaces 
+   del perfil normal y panel de vendedor.
+   ========================================= */
+.logout-btn {
+  background: transparent;
+  color: #ff4d4d; 
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid #ff4d4d;
+  border-radius: var(--radius);
+  transition: all 0.2s;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background: #ff4d4d;
+  color: white;
+}
+
+.profile-link, .seller-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-main);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.seller-link {
+  color: #ffb700; 
+}
+
+.seller-link:hover {
+  color: #ffd700;
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.4); 
+}

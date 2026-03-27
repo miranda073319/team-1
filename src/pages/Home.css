@@ -1,0 +1,226 @@
+/* =========================================
+   1. CONTENEDOR PRINCIPAL Y SECCIONES
+   Alineación, ancho máximo y espacio general
+   de la página de inicio.
+   ========================================= */
+.home-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 1rem 4%;
+  min-height: calc(100vh - 80px);
+  color: white;
+}
+
+.home-section {
+  margin-bottom: 3.5rem; 
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end; 
+  border-bottom: 1px solid #333;
+  padding-bottom: 8px; 
+  margin-bottom: 1.2rem; 
+}
+
+/* =========================================
+   2. TÍTULOS Y COLORES
+   ========================================= */
+.section-title {
+  font-size: 1.9rem; 
+  font-weight: 800;
+  margin: 0 0 4px 0; 
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-subtitle {
+  color: #888;
+  font-size: 1.05rem; 
+  margin: 0;
+}
+
+.text-gold { color: #ffb700; }
+.text-green { color: #00ff64; }
+
+/* =========================================
+   3. BOTONES DE NAVEGACIÓN
+   "Ver todos" y "Volver al inicio"
+   ========================================= */
+.btn-view-all {
+  background: transparent;
+  border: 1px solid #444;
+  color: #ddd;
+  padding: 8px 18px; 
+  border-radius: 20px;
+  font-size: 0.95rem; 
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.btn-view-all:hover {
+  background: #333;
+  color: white;
+  border-color: #888;
+}
+
+.btn-back {
+  background: transparent;
+  color: #ffb700;
+  border: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+}
+
+.btn-back:hover { text-decoration: underline; }
+
+/* =========================================
+   4. CARRUSELES, manejo de scroll horizontal 
+   ========================================= */
+.carousel-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 1.2rem; 
+  overflow-x: auto;
+  scroll-snap-type: x mandatory; 
+  scroll-behavior: smooth;
+  padding: 10px 0; 
+  align-items: stretch; 
+}
+
+.carousel-track::-webkit-scrollbar {
+  display: none;
+}
+.carousel-track {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.carousel-item {
+  flex: 0 0 240px; 
+  width: 240px;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Flechas flotantes de navegación */
+.carousel-btn {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.85); 
+  color: white;
+  border: 1px solid #555;
+  width: 42px; 
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+.carousel-btn:hover {
+  background: #ffb700;
+  color: black;
+  border-color: #ffb700;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-btn.left { left: -15px; }
+.carousel-btn.right { right: -15px; }
+
+/* ==============================
+   5. CUADRÍCULA DEL CATÁLOGO 
+   ============================== */
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Magia visual: Evita que imágenes de distintos tamaños rompan las tarjetas */
+.carousel-item img,
+.games-grid img {
+  aspect-ratio: 3 / 4;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* =========================================
+   6. FILTROS DE CATEGORÍAS (Píldoras)
+   ========================================= */
+.category-filters {
+  display: flex;
+  flex-direction: column; 
+  gap: 12px; 
+  margin: 1.5rem 0 2.5rem 0; 
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #222;
+}
+
+.filter-label {
+  color: #888; 
+  font-size: 1.05rem; 
+  font-weight: bold;
+}
+
+.filters-container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px; 
+}
+
+.filter-pill {
+  background-color: #1a1a1a;
+  color: #aaa;
+  border: 1px solid #333;
+  padding: 8px 16px; 
+  border-radius: 20px;
+  font-size: 0.95rem; 
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-pill:hover { 
+  background-color: #2a2a2a; 
+  color: white; 
+}
+
+.filter-pill.active {
+  background-color: #ffb700;
+  color: #000;
+  border-color: #ffb700;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem;
+  color: #888;
+  background-color: #121212;
+  border-radius: 12px;
+  font-size: 1.1rem;
+}

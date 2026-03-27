@@ -1,0 +1,105 @@
+/* =========================================
+   1. CONTENEDOR PRINCIPAL DE LA TARJETA
+   Estructura base, fondo y la animación de 
+   elevación (hover) al pasar el cursor.
+   ========================================= */
+.game-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--card-bg);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+
+.game-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* =========================================
+   2. IMAGEN DE PORTADA
+   Mantiene la proporción vertical 3:4 y 
+   aplica un zoom suave al hacer hover.
+   ========================================= */
+.card-image-wrapper {
+  width: 100%;
+  aspect-ratio: 3 / 4; 
+  overflow: hidden;
+}
+
+.game-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.game-card:hover .game-image {
+  transform: scale(1.05);
+}
+
+/* =========================================
+   3. CONTENIDO Y TEXTOS
+   Agrupa el título y las categorías. Usa 
+   flex-grow para empujar el precio al fondo.
+   ========================================= */
+.card-content {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; 
+}
+
+.game-category {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+}
+
+.game-title {
+  font-size: 1.1rem;
+  margin: 0 0 1rem 0;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; 
+}
+
+/* =========================================
+   4. PRECIOS Y DESCUENTOS
+   Alineación de los precios y estilos para 
+   la etiqueta de porcentaje y precio tachado.
+   ========================================= */
+.game-pricing {
+  margin-top: auto; 
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.discount-badge {
+  background-color: var(--accent);
+  color: white;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.old-price {
+  color: var(--text-secondary);
+  text-decoration: line-through;
+  font-size: 0.9rem;
+}
+
+.current-price {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: white;
+}
