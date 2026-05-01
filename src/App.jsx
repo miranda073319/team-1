@@ -10,6 +10,8 @@ import AdminDashboard from './pages/AdminDashboard';
 import GameDetails from './pages/GameDetails';
 import Cart from './pages/Cart';
 import Profile from './pages/Profile';
+import PaymentSuccess from './pages/PaymentSuccess';
+import PaymentCancel from './pages/PaymentCancel';
 
 function App() {
   // 3. ESTRUCTURA PRINCIPAL DE LA APLICACIÓN
@@ -36,6 +38,10 @@ function App() {
           
           {/* Carrito de compras y pasarela de pagos */}
           <Route path="/cart" element={<Cart />} />
+          
+          {/* Retorno de pasarela de pagos (Stripe) */}
+          <Route path="/payment-success" element={<PaymentSuccess />} />
+          <Route path="/payment-cancel" element={<PaymentCancel />} />
           
           {/* Panel de administración exclusivo del vendedor */}
           <Route path="/admin" element={<AdminDashboard />} />

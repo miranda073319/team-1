@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { FiTrash2, FiCreditCard, FiCheckCircle, FiMinus, FiPlus } from 'react-icons/fi';
+import paymentService from '../services/paymentService';
 import './Cart.css';
 
 const Cart = () => {
@@ -122,25 +123,24 @@ const Cart = () => {
   // Extraemos las variables para usarlas libremente en el return HTML
   const { precioOriginalTotal, descuentoTotal, subtotal, iva, totalAPagar } = calcularResumen();
 
-  // 7. PROCESAR EL PAGO (ENVIAR AL BACKEND)
-  const handlePaymentSubmit = async (e) => {
-    e.preventDefault();
+  // 7. PROCESAR EL PAGO (ENVIAR AL BACKEND Y REDIRIGIR A STRIPE)
+  const handlePaymentSubmit = async () => {
     setErrorMsg('');
     setSuccessMsg('');
 
     try {
-      const token = localStorage.getItem('token');
-      const response = await axios.post('http://127.0.0.1:8000/api/orders', { total: totalAPagar }, {
-        headers: { Authorization: `Bearer ${token}`, Accept: 'application/json' }
-      });
-
-      setSuccessMsg(response.data.message);
-      setCartItems([]); // Vaciamos carrito visualmente
-      setShowPayment(false); // Cerramos modal
-      setPaymentData({ name: '', cardNumber: '', expiry: '', cvv: '' }); 
-      window.dispatchEvent(new Event('cartUpdated')); 
+      const successUrl = `${window.location.origin}/payment-success`;
+      const cancelUrl = `${window.location.origin}/payment-cancel`;
+      
+      const response = await paymentService.createCheckoutSession(successUrl, cancelUrl);
+      
+      if (response.session_url) {
+        window.location.href = response.session_url;
+      } else {
+        throw new Error("No se recibió la URL de Stripe.");
+      }
     } catch (error) {
-      setErrorMsg(error.response?.data?.message || 'Error al procesar el pago.');
+      setErrorMsg(error.response?.data?.message || 'Error al iniciar el proceso de pago.');
     }
   };
 
@@ -240,44 +240,12 @@ const Cart = () => {
               <span>${totalAPagar.toFixed(2)}</span>
             </div>
             
-            <button className="btn-checkout" onClick={() => setShowPayment(true)}>Proceder al Pago</button>
+            <button className="btn-checkout" onClick={handlePaymentSubmit}>Proceder al Pago con Stripe</button>
           </div>
         </div>
       ) : null}
 
-      {/* VENTANA EMERGENTE (MODAL) DE PAGO */}
-      {showPayment && (
-        <div className="payment-modal-overlay">
-          <div className="payment-modal">
-            <h2><FiCreditCard /> Detalles de Pago</h2>
-            <p>Simulación segura de pago. No ingreses datos reales.</p>
-            <form onSubmit={handlePaymentSubmit} className="payment-form">
-              <input 
-                type="text" name="name" value={paymentData.name} onChange={handlePaymentChange} 
-                required placeholder="Nombre en la tarjeta" 
-              />
-              <input 
-                type="text" name="cardNumber" value={paymentData.cardNumber} onChange={handlePaymentChange} 
-                required placeholder="Número de Tarjeta (16 dígitos)" maxLength="19" 
-              />
-              <div className="payment-row">
-                <input 
-                  type="text" name="expiry" value={paymentData.expiry} onChange={handlePaymentChange} 
-                  required placeholder="MM/AA" maxLength="5" 
-                />
-                <input 
-                  type="password" name="cvv" value={paymentData.cvv} onChange={handlePaymentChange} 
-                  required placeholder="CVV" maxLength="4" 
-                />
-              </div>
-              <div className="modal-actions">
-                <button type="button" className="btn-cancel" onClick={() => setShowPayment(false)}>Cancelar</button>
-                <button type="submit" className="btn-pay">Pagar ${totalAPagar.toFixed(2)}</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
+      {/* El modal de pago simulado ha sido eliminado para usar Stripe Checkout */}
     </div>
   );
 };
