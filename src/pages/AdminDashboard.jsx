@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { FiEdit, FiTrash2, FiPlus, FiList, FiBox } from 'react-icons/fi';
+import { FiEdit, FiTrash2, FiPlus, FiList, FiBox, FiBarChart2 } from 'react-icons/fi';
+import AdminStats from '../components/AdminStats';
 import './AdminDashboard.css';
 
 /**
@@ -209,6 +210,14 @@ const AdminDashboard = () => {
           >
             <FiBox /> Gestión de Pedidos
           </button>
+
+          {/* ── Nueva Funcionalidad #2: Tab de Estadísticas ── */}
+          <button 
+            className={`tab-btn ${activeTab === 'stats' ? 'active' : ''}`}
+            onClick={() => { setActiveTab('stats'); setMessage(''); }}
+          >
+            <FiBarChart2 /> Estadísticas
+          </button>
         </div>
       </header>
 
@@ -396,6 +405,13 @@ const AdminDashboard = () => {
                 </tbody>
               </table>
             </div>
+          </div>
+        )}
+
+        {/* ── Nueva Funcionalidad #2: Panel de Estadísticas ── */}
+        {activeTab === 'stats' && (
+          <div className="admin-card">
+            <AdminStats />
           </div>
         )}
 
