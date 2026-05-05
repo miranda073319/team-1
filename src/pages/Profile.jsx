@@ -7,7 +7,7 @@ import './Profile.css';
 
 const Profile = () => {
   // 1. ESTADOS DE NAVEGACIÓN Y DATOS
-  const [activeTab, setActiveTab] = useState('compras'); 
+  const [activeTab, setActiveTab] = useState('datos'); 
   const [wishlist, setWishlist] = useState([]);
   const [orders, setOrders] = useState([]); 
   const [loading, setLoading] = useState(false);
