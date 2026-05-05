@@ -5,6 +5,8 @@ import { FiTrash2, FiCreditCard, FiCheckCircle, FiMinus, FiPlus } from 'react-ic
 import paymentService from '../services/paymentService';
 import './Cart.css';
 
+const API_BASE = import.meta.env.VITE_API_BASE || 'http://127.0.0.1:8000';
+
 const Cart = () => {
   // 1. ESTADOS GENERALES Y DE UI
   const [cartItems, setCartItems] = useState([]);
@@ -25,7 +27,7 @@ const Cart = () => {
       const token = localStorage.getItem('token');
       if (!token) return navigate('/login');
       
-      const response = await axios.get('http://127.0.0.1:8000/api/cart', {
+      const response = await axios.get(`${API_BASE}/api/cart`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -48,7 +50,7 @@ const Cart = () => {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.put(`http://127.0.0.1:8000/api/cart/${cartId}`, { quantity: newQty }, {
+      await axios.put(`${API_BASE}/api/cart/${cartId}`, { quantity: newQty }, {
         headers: { Authorization: `Bearer ${token}`, Accept: 'application/json' }
       });
       fetchCart(); 
@@ -62,7 +64,7 @@ const Cart = () => {
   const handleRemove = async (cartId) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://127.0.0.1:8000/api/cart/${cartId}`, {
+      await axios.delete(`${API_BASE}/api/cart/${cartId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchCart(); 

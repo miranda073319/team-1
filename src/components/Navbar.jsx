@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { FiSearch, FiShoppingCart, FiUser, FiLogOut, FiSettings } from 'react-icons/fi';
+import API_BASE from '../config/api';
 import './Navbar.css';
 
 /**
@@ -30,7 +31,7 @@ const Navbar = () => {
     }
     
     try {
-      const response = await axios.get('http://127.0.0.1:8000/api/cart', {
+      const response = await axios.get(`${API_BASE}/api/cart`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       

@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import GameCard from '../components/GameCard';
 import { FiStar, FiTag, FiGrid, FiSearch, FiChevronLeft, FiChevronRight, FiArrowLeft } from 'react-icons/fi';
+import API_BASE from '../config/api';
 import './Home.css';
 
 // Usamos las categorías oficiales de tu tienda
@@ -39,7 +40,7 @@ const Home = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/api/products');
+        const response = await axios.get(`${API_BASE}/api/products`);
         setProducts(response.data);
       } catch (error) {
         console.error("Error cargando productos", error);
