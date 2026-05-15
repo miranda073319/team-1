@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { FiSearch, FiShoppingCart, FiUser, FiLogOut, FiSettings } from 'react-icons/fi';
+import API_BASE from '../config/api';
 import './Navbar.css';
 
 /**
@@ -30,7 +31,7 @@ const Navbar = () => {
     }
     
     try {
-      const response = await axios.get('http://127.0.0.1:8000/api/cart', {
+      const response = await axios.get(`${API_BASE}/api/cart`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -116,12 +117,9 @@ const Navbar = () => {
               {cartCount > 0 && <span className="badge">{cartCount}</span>}
             </Link>
 
-            {/* Validamos si es Admin (Vendedor) o Cliente Normal */}
-            {user.role === 'vendedor' ? (
-              <Link to="/admin" className="nav-link seller-link">
-                <FiSettings /> Panel Vendedor
-              </Link>
-            ) : (
+            {/* Links for both Admin and Client */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+              {/* Profile Link (Universal) */}
               <Link to="/perfil" className="nav-link profile-link" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 {user.avatar_url ? (
                   <img 
@@ -134,7 +132,14 @@ const Navbar = () => {
                 )}
                 <span style={{ fontWeight: 'bold' }}>{user.alias || user.name}</span>
               </Link>
-            )}
+
+              {/* Admin Dashboard Link (Only for Sellers) */}
+              {user.role === 'vendedor' && (
+                <Link to="/admin" className="nav-link seller-link" title="Panel de Administración">
+                  <FiSettings size={20} />
+                </Link>
+              )}
+            </div>
 
             <button onClick={handleLogout} className="logout-btn">
               <FiLogOut /> Salir

@@ -2,11 +2,12 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FiUser, FiHeart, FiShoppingBag, FiCalendar, FiCheckCircle, FiChevronDown, FiChevronUp } from 'react-icons/fi';
 import GameCard from '../components/GameCard';
+import API_BASE from '../config/api';
 import './Profile.css';
 
 const Profile = () => {
   // 1. ESTADOS DE NAVEGACIÓN Y DATOS
-  const [activeTab, setActiveTab] = useState('compras'); 
+  const [activeTab, setActiveTab] = useState('datos'); 
   const [wishlist, setWishlist] = useState([]);
   const [orders, setOrders] = useState([]); 
   const [loading, setLoading] = useState(false);
@@ -39,7 +40,7 @@ const Profile = () => {
     setLoading(true);
     const token = localStorage.getItem('token');
     try {
-      const response = await axios.get('http://127.0.0.1:8000/api/wishlist', {
+      const response = await axios.get(`${API_BASE}/api/wishlist`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setWishlist(response.data);
@@ -54,7 +55,7 @@ const Profile = () => {
     setLoading(true);
     const token = localStorage.getItem('token');
     try {
-      const response = await axios.get('http://127.0.0.1:8000/api/orders/history', {
+      const response = await axios.get(`${API_BASE}/api/orders/history`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setOrders(response.data);
@@ -74,7 +75,7 @@ const Profile = () => {
     e.preventDefault();
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.put('http://127.0.0.1:8000/api/user/profile', profileData, {
+      const response = await axios.put(`${API_BASE}/api/user/profile`, profileData, {
         headers: { Authorization: `Bearer ${token}` }
       });
       

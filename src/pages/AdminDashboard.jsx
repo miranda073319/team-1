@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FiEdit, FiTrash2, FiPlus, FiList, FiBox, FiBarChart2 } from 'react-icons/fi';
 import AdminStats from '../components/AdminStats';
+import API_BASE from '../config/api';
 import './AdminDashboard.css';
 
 /**
@@ -31,7 +32,7 @@ const AdminDashboard = () => {
   // Obtiene todos los juegos públicos del catálogo
   const fetchGames = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:8000/api/products');
+      const response = await axios.get(`${API_BASE}/api/products`);
       setGames(response.data);
     } catch (error) {
       console.error("Error al cargar inventario:", error);
@@ -42,7 +43,7 @@ const AdminDashboard = () => {
   const fetchOrders = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://127.0.0.1:8000/api/admin/orders', {
+      const response = await axios.get(`${API_BASE}/api/admin/orders`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setOrders(response.data);
@@ -55,7 +56,7 @@ const AdminDashboard = () => {
   const handleStatusChange = async (orderId, newStatus) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.put(`http://127.0.0.1:8000/api/admin/orders/${orderId}/status`, 
+      await axios.put(`${API_BASE}/api/admin/orders/${orderId}/status`, 
         { status: newStatus },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -134,7 +135,7 @@ const AdminDashboard = () => {
     if (!window.confirm('¿Estás seguro de que deseas eliminar este juego del catálogo?')) return;
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://127.0.0.1:8000/api/products/${id}`, {
+      await axios.delete(`${API_BASE}/api/products/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setMessage('Juego eliminado correctamente.');
@@ -154,10 +155,10 @@ const AdminDashboard = () => {
       const headers = { Authorization: `Bearer ${token}`, Accept: 'application/json' };
 
       if (editingId) {
-        await axios.put(`http://127.0.0.1:8000/api/products/${editingId}`, formData, { headers });
+        await axios.put(`${API_BASE}/api/products/${editingId}`, formData, { headers });
         setMessage('¡Juego actualizado con éxito!');
       } else {
-        await axios.post('http://127.0.0.1:8000/api/products', formData, { headers });
+        await axios.post(`${API_BASE}/api/products`, formData, { headers });
         setMessage('¡Juego publicado con éxito!');
       }
 

@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { FiShoppingCart, FiHeart } from 'react-icons/fi';
 import ReviewSection from '../components/ReviewSection';
+import API_BASE from '../config/api';
 import './GameDetails.css';
 
 const GameDetails = () => {
@@ -19,7 +20,7 @@ const GameDetails = () => {
     // Obtener toda la información del juego
     const fetchGame = async () => {
       try {
-        const response = await axios.get(`http://127.0.0.1:8000/api/products/${id}`);
+        const response = await axios.get(`${API_BASE}/api/products/${id}`);
         setGame(response.data);
       } catch (error) {
         console.error("Error cargando el juego:", error);
@@ -33,7 +34,7 @@ const GameDetails = () => {
       const token = localStorage.getItem('token');
       if (token) {
         try {
-          const response = await axios.get(`http://127.0.0.1:8000/api/wishlist/check/${id}`, {
+          const response = await axios.get(`${API_BASE}/api/wishlist/check/${id}`, {
             headers: { Authorization: `Bearer ${token}` }
           });
           setIsWishlisted(response.data.is_in_wishlist);
@@ -59,7 +60,7 @@ const GameDetails = () => {
     }
 
     try {
-      await axios.post('http://127.0.0.1:8000/api/cart', { product_id: game.id }, {
+      await axios.post(`${API_BASE}/api/cart`, { product_id: game.id }, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
@@ -86,7 +87,7 @@ const GameDetails = () => {
     }
 
     try {
-      await axios.post('http://127.0.0.1:8000/api/wishlist/toggle', { product_id: game.id }, {
+      await axios.post(`${API_BASE}/api/wishlist/toggle`, { product_id: game.id }, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
